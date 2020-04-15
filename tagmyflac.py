@@ -108,7 +108,8 @@ def print_tags(file, audio):
     print(file["path"])
     for line in iter(audio.pprint().splitlines()):
         print("   " + line)
-    else:
+        tags_found = True
+    if not tags_found: 
         print("   no tags")
 
 
