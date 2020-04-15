@@ -1,6 +1,6 @@
 import argparse, string, sys, glob, mutagen, json, datetime
 from mutagen.mp3 import MP3, MutagenError
-from mutagen.easyid3 import EasyID3
+from mutagen.easyid3 import EasyID3, EasyID3KeyError
 from mutagen.id3 import ID3NoHeaderError
 
 hello = r"""
@@ -86,7 +86,12 @@ def write_tags(tags, file, audio):
             sys.exit(1)
             
         for key in tags_json:
-            audio[key] = tags_json[key]
+            try:
+                audio[key] = tags_json[key]
+            except EasyID3KeyError:
+                print("Provided key " + key + " is invalid.")
+                print("Run with --print_valid_keys flag to check available keys")
+                sys.exit(1)
 
     print("Added tags to " + file["filename"])
     audio.save()
