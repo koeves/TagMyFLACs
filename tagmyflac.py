@@ -55,7 +55,7 @@ def walk_directory(input_dir):
             if (args.scrape):
                 delete_tags(file, audio)
             if (args.retag):
-                tag_title_artist(file, audio)
+                retag_from_filename(file, audio)
             if (args.tags):
                 write_tags(args.tags, file, audio)
             if (args.print):
@@ -107,8 +107,8 @@ def delete_tags(file, audio):
     print_verbose(args.verbose, "Deleted tags from " + file["filename"])
 
 
-""" writes title artist tag """
-def tag_title_artist(file, audio):
+""" retags song from filename """
+def retag_from_filename(file, audio):
     for key in file["metadata"]:
         audio[key] = file["metadata"][key]
     print_verbose(args.verbose, verbose_str="Renamed " + file["filename"])
