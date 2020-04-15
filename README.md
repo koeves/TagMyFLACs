@@ -51,7 +51,7 @@ You can then use TagMyFlac to automatically add the given ID3 metadata for the f
 python3 tagmyflac.py -vrs <source directory>
 ```
  
-**A note on source directory paths**
+#### A note on source directory paths
 By default, when you provide a directory's path you would exclude the trailing slash `/`. This however will result in file changes only *one level* down the tree. Would you prefer to walk all subdirectories, put an ending slash `/` after the source directory path.
 
 ### II. Scraping tags from files
@@ -59,7 +59,7 @@ By default, when you provide a directory's path you would exclude the trailing s
 You can reset the tags from your files by running
 
 ```
-python3 tagmyflac.py --scrape -s <source directory>
+python3 tagmyflac.py --scrape -vs <source directory>
 ```
 
 The `--scrape` flag reinitialises the files again, so you can run the `--retag` option easily.  
