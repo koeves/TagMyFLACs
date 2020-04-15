@@ -20,7 +20,8 @@ python3 tagmyflac.py -h
 The output should now be the following:
 
 ```
-usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p]
+usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
+                    [--print_valid_keys]
 
 Tag My FLAC
 
@@ -31,13 +32,15 @@ optional arguments:
   -v, --verbose         increase output verbosity
   -r, --retag           tags title and artist
   -p, --print           print metadata tags
+  --scrape              scrape ID3 tags from files
+  --print_valid_keys    print taggable keys list
 ```
 
 You can always access this help page via the `-h` or `--help` flags.
 
 **Basic usage scenarios**
 
-1.) 
+I. Basic metadata from filename:
 Supppose you have some online rips of songs.
 Name them the following way: 
 `ARTIST NAME - SONG TITLE [CAT_ID/ALBUM NAME -- optional].mp3`
@@ -49,3 +52,26 @@ python3 tagmyflac.py -vrs <source directory>
 ```
 
 Do not forget to add a trailing slash `/` after the directory name.
+
+II. Scraping tags from files:
+
+You can reset the tags from your files by running
+
+```
+python3 tagmyflac.py --scrape -s <source directory>
+```
+
+The `--scrape` flag reinitialises the files again, so you can run the `--retag` option easily.  
+  
+Scenarios I. and II. can also be combined naturally:
+```
+python3 tagmyflac.py --scrape -vrs <source directory>
+```
+
+III. Printing all tags of a file
+
+Just use the `-p` or `--print` flags:
+
+```
+python3 tagmyflac.py --print -s <source directory>
+```
