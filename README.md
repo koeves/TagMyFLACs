@@ -92,7 +92,7 @@ $ python3 tagmyflac.py --print -s <source directory>
 
 Consider, that the printing evaluation is the last element in the chain, therefore, when combining the `--print` flag with other potentially tag-modifying flags, printing will show the end result.
 
-### Adding custom tags from JSON
+### IV. Adding custom tags from JSON
 
 You can use the `-t` or `--tags` flag and provide a *preformatted* JSON with the following format to write them onto your files:
 ```javascript
