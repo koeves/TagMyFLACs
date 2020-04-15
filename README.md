@@ -1,6 +1,16 @@
 # TagMyFlac
 ID3 tagger for music files
 
+```
+          ______                  __   
+_________/     \\     _____      / /   _______    ____    ___
+|__   __|  ____  |   //  \_\     /_/   |  ___|  //   \\_//  \\
+   | |  |  |__|  |  ||  _____          |  |_   | |     V    | |
+   | |  |        |  ||     ||          |   _|  | |     |    | |
+   | |  |   __   |   \\___//           |  |____| |          | |
+   |_|  |__|  |__|                     |_______|_|          |_|
+```
+
 ## Installation
 
 Clone or download the repo and `cd` into the directory.

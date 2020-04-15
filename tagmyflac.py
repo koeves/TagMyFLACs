@@ -3,17 +3,16 @@ from mutagen.mp3 import MP3, MutagenError
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3NoHeaderError
 
-
-r"""       ______                  __   
-_________/     \\     ____       / /   _______    ____    ___
-|__   __|  ____  |   /  \_\     /_/    |  ___|  //   \\_//  \\
-   | |  |  |__|  |  |   _____          |  |_   | |     V    | |
-   | |  |        |  |      ||          |   _|  | |     |    | |
+hello = r"""
+          ______                  __   
+_________/     \\     _____      / /   _______    ____    ___
+|__   __|  ____  |   //  \_\     /_/   |  ___|  //   \\_//  \\
+   | |  |  |__|  |  ||  _____          |  |_   | |     V    | |
+   | |  |        |  ||     ||          |   _|  | |     |    | |
    | |  |   __   |   \\___//           |  |____| |          | |
    |_|  |__|  |__|                     |_______|_|          |_|
 
 """
-
 
 """ prints verboooose text """
 def print_verbose(v, verbose_str=""):
@@ -103,6 +102,8 @@ if __name__ == '__main__':
     parser.add_argument("-p", "--print", help="print metadata tags", action="store_true")
     parser.add_argument("--scrape", help="scrape ID3 tags from files", action="store_true")
     parser.add_argument("--print_valid_keys", help="print taggable keys list", action="store_true")
+
+    print(hello)
 
     if len(sys.argv) < 2:
         parser.print_usage()
