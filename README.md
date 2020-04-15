@@ -50,8 +50,9 @@ You can then use TagMyFlac to automatically add the given ID3 metadata for the f
 ```
 python3 tagmyflac.py -vrs <source directory>
 ```
-
-Do not forget to add a trailing slash `/` after the directory name.
+ 
+**A note on source directory paths**
+By default, when you provide a directory's path you would exclude the trailing slash `/`. This however will result in file changes only *one level* down the tree. Would you prefer to walk all subdirectories, put an ending slash `/` after the source directory path.
 
 ### II. Scraping tags from files
 
