@@ -22,8 +22,18 @@ $ python3 tagmyflac.py --help
 The output should now be the following:
 
 ```bash
+
+          ______                  __   
+_________/     \\     _____      / /   _______    ____    ___
+|__   __|  ____  |   //  \_\     /_/   |  ___|  //   \\_//  \\
+   | |  |  |__|  |  ||  _____          |  |_   | |     V    | |
+   | |  |        |  ||     ||          |   _|  | |     |    | |
+   | |  |   __   |   \\___//           |  |____| |          | |
+   |_|  |__|  |__|                     |_______|_|          |_|
+
+
 usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
-                    [--print_valid_keys]
+                    [--print_valid_keys] [-t TAGS]
 
 Tag My FLAC
 
@@ -36,6 +46,7 @@ optional arguments:
   -p, --print           print metadata tags
   --scrape              scrape ID3 tags from files
   --print_valid_keys    print taggable keys list
+  -t TAGS, --tags TAGS  write the provided key-value pairs as tags
 ```
 
 You can always access this help page via the `-h` or `--help` flags.
@@ -80,3 +91,15 @@ $ python3 tagmyflac.py --print -s <source directory>
 ```
 
 Consider, that the printing evaluation is the last element in the chain, therefore, when combining the `--print` flag with other potentially tag-modifying flags, printing will show the end result.
+
+### Adding custom tags from JSON
+
+You can use the `-t` or `--tags` flag and provide a *preformatted* JSON with the following format to write them onto your files:
+```javascript
+'{"key": "value", "key": "value"}'
+```
+
+Example: 
+```bash
+$ python3 tagmyflac.py -vps <source directory> --tags '{"genre": "minimal"}'
+```

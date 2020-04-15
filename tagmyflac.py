@@ -1,4 +1,4 @@
-import argparse, string, sys, glob, mutagen
+import argparse, string, sys, glob, mutagen, json
 from mutagen.mp3 import MP3, MutagenError
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3NoHeaderError
@@ -54,6 +54,8 @@ def walk_directory(input_dir):
                 delete_tags(file, audio)
             if (args.retag):
                 tag_title_artist(file, audio)
+            if (args.tags):
+                write_tags(args.tags, file, audio)
             if (args.print):
                 print_tags(file, audio)
         except ID3NoHeaderError:
@@ -64,6 +66,23 @@ def walk_directory(input_dir):
             meta.save(file["path"], v1=2)
         except MutagenError:
             print("Loading " + filename + " failed :(")
+
+
+""" writes tags provided in JSON format """
+def write_tags(tags, file, audio):
+    if "{" and "}" in tags:
+        try:
+            tags_json = json.loads(tags)
+        except ValueError:
+            print("Wrongly formatted JSON!")
+            print("Sample format: '{\"genre\": \"minimal\"}'")
+            sys.exit(1)
+            
+        for key in tags_json:
+            audio[key] = tags_json[key]
+
+    print("Added tags to " + file["filename"])
+    audio.save()
 
 
 """ delete tags from file """
@@ -102,6 +121,7 @@ if __name__ == '__main__':
     parser.add_argument("-p", "--print", help="print metadata tags", action="store_true")
     parser.add_argument("--scrape", help="scrape ID3 tags from files", action="store_true")
     parser.add_argument("--print_valid_keys", help="print taggable keys list", action="store_true")
+    parser.add_argument("-t", "--tags", type=str, help="write the provided key-value pairs as tags")
 
     print(hello)
 
