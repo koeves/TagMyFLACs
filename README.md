@@ -112,3 +112,11 @@ Example:
 ```bash
 $ python3 tagmyflac.py -vps <source directory> --tags '{"genre": "minimal"}'
 ```
+
+### V. Exporting metadata in JSON
+
+You can use the `-e` or `--export` flags to produce a JSON file with all your songs metadata (to be used for restores etc.)
+
+```bash
+python3 tagmyflac.py --export -s <source directory>
+``` 

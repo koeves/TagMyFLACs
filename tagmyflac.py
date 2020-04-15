@@ -1,4 +1,4 @@
-import argparse, string, sys, glob, mutagen, json
+import argparse, string, sys, glob, mutagen, json, datetime
 from mutagen.mp3 import MP3, MutagenError
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3NoHeaderError
@@ -46,10 +46,12 @@ def parse_filename(filename):
 
 """ handles eye d three """
 def walk_directory(input_dir):
+    songs = {}
     for filename in list_files_recursive(input_dir):
         file = parse_filename(filename)
         try:
             audio = EasyID3(filename)
+
             if (args.scrape):
                 delete_tags(file, audio)
             if (args.retag):
@@ -58,6 +60,9 @@ def walk_directory(input_dir):
                 write_tags(args.tags, file, audio)
             if (args.print):
                 print_tags(file, audio)
+            if (args.export):
+                songs[file["filename"]] = get_tags(audio)
+
         except ID3NoHeaderError:
             print("No ID3 tags found for " + file["filename"])
             print("Adding empty tags")
@@ -67,6 +72,8 @@ def walk_directory(input_dir):
         except MutagenError:
             print("Loading " + filename + " failed :(")
 
+    if (args.export):
+        export_tags(songs, input_dir)
 
 """ writes tags provided in JSON format """
 def write_tags(tags, file, audio):
@@ -103,14 +110,32 @@ def tag_title_artist(file, audio):
     audio.save()
 
 
+""" returns a dictionary of song tags """
+def get_tags(audio):
+    tags = {}
+    for key in sorted(audio.keys()):
+        values = audio[key]
+        for value in values:
+            tags.update({key: value})
+    return tags
+
+
 """ print metadata """
 def print_tags(file, audio):
-    print(file["path"])
-    for line in iter(audio.pprint().splitlines()):
-        print("   " + line)
-        tags_found = True
-    if not tags_found: 
+    print(file["filename"])
+    tags = get_tags(audio)
+    if tags:
+        print(json.dumps(tags, sort_keys=True, indent=4))
+    else:
         print("   no tags")
+
+
+""" export tags """
+def export_tags(songs, input_dir):
+    filename = "dumps-" + datetime.datetime.now().strftime("%Y-%m-%d-%H.%M.%S") + ".json"
+    with open(filename, "w") as fp:
+        json.dump(songs, fp, indent=4)
+    print("Dumped metadata of folder " + input_dir + " in file " + filename)
 
 
 """ main """
@@ -123,6 +148,7 @@ if __name__ == '__main__':
     parser.add_argument("--scrape", help="scrape ID3 tags from files", action="store_true")
     parser.add_argument("--print_valid_keys", help="print taggable keys list", action="store_true")
     parser.add_argument("-t", "--tags", type=str, help="write the provided key-value pairs as tags")
+    parser.add_argument("-e", "--export", help="export song metadata in JSON", action="store_true")
 
     print(hello)
 
