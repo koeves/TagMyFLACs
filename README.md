@@ -6,11 +6,11 @@ ID3 tagger for music files
 ## Table of Contents
 
 1. [Installation](https://github.com/koeves/TagMyFlac#installation)
-2. [Basic use-case scenarios](https://github.com/koeves/TagMyFlac#basic-use-case-scenarios)
-  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFlac#i-basic-metadata-from-filename)
-  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFlac#ii-scraping-tags-from-files)
-  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFlac#iii-printing-all-tags-of-a-file)
-  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFlac#iv-adding-custom-tags-from-json)
+2. [Basic use-case scenarios](https://github.com/koeves/TagMyFlac#basic-use-case-scenarios)  
+  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFlac#i-basic-metadata-from-filename)  
+  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFlac#ii-scraping-tags-from-files)  
+  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFlac#iii-printing-all-tags-of-a-file)  
+  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFlac#iv-adding-custom-tags-from-json)  
 
 ## Installation
 
