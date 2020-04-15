@@ -40,7 +40,7 @@ You can always access this help page via the `-h` or `--help` flags.
 1.) 
 Supppose you have some online rips of songs.
 Name them the following way: 
-`ARTIST NAME - SONG TITLE [CAT_ID].mp3`
+`ARTIST NAME - SONG TITLE [CAT_ID/ALBUM NAME -- optional].mp3`
 
 You can then use TagMyFlac to automatically add the given ID3 metadata for the files in the source directory *recursively*:
 
