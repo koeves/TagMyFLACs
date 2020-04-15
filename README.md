@@ -1,7 +1,7 @@
 # TagMyFlac
 ID3 tagger for music files
 
-**Installation**
+## Installation
 
 Clone or download the repo, `cd` into the directory
 
@@ -38,9 +38,9 @@ optional arguments:
 
 You can always access this help page via the `-h` or `--help` flags.
 
-**Basic usage scenarios**
+## Basic usage scenarios
 
-I. Basic metadata from filename:
+### I. Basic metadata from filename
 Supppose you have some online rips of songs.
 Name them the following way: 
 `ARTIST NAME - SONG TITLE [CAT_ID/ALBUM NAME -- optional].mp3`
@@ -53,7 +53,7 @@ python3 tagmyflac.py -vrs <source directory>
 
 Do not forget to add a trailing slash `/` after the directory name.
 
-II. Scraping tags from files:
+### II. Scraping tags from files
 
 You can reset the tags from your files by running
 
@@ -68,7 +68,7 @@ Scenarios I. and II. can also be combined naturally:
 python3 tagmyflac.py --scrape -vrs <source directory>
 ```
 
-III. Printing all tags of a file
+### III. Printing all tags of a file
 
 Just use the `-p` or `--print` flags:
 
