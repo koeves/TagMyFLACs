@@ -38,7 +38,7 @@ You can always access this help page via the `-h` or `--help` flags.
 **Basic usage scenarios**
 
 1.) 
-Supppose you have some online rips of mp3.
+Supppose you have some online rips of songs.
 Name them the following way: 
 `ARTIST NAME - SONG TITLE [CAT_ID].mp3`
 
