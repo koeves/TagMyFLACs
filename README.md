@@ -1,7 +1,7 @@
 # TagMyFlac
 ID3 tagger for music files
 
-<img align="center src="logo.png" />
+<img align="center" src="logo.png" />
 
 ## Table of Contents
 
