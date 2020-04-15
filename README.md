@@ -7,19 +7,19 @@ Clone or download the repo, `cd` into the directory
 
 Use `pip3` to install requirements:
 
-```
+```bash
 sudo -H pip3 install -r requirements.txt
 ```
 
 Run `tagmyflac.py`:
 
-```
+```bash
 python3 tagmyflac.py -h
 ```
 
 The output should now be the following:
 
-```
+```bash
 usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
                     [--print_valid_keys]
 
@@ -47,7 +47,7 @@ Name them the following way:
 
 You can then use TagMyFlac to automatically add the given ID3 metadata for the files in the source directory *recursively*:
 
-```
+```bash
 python3 tagmyflac.py -vrs <source directory>
 ```
  
@@ -58,14 +58,14 @@ By default, when you provide a directory's path you would exclude the trailing s
 
 You can reset the tags from your files by running
 
-```
+```bash
 python3 tagmyflac.py --scrape -vs <source directory>
 ```
 
 The `--scrape` flag reinitialises the files again, so you can run the `--retag` option easily.  
   
 Scenarios I. and II. can also be combined naturally:
-```
+```bash
 python3 tagmyflac.py --scrape -vrs <source directory>
 ```
 
@@ -73,6 +73,8 @@ python3 tagmyflac.py --scrape -vrs <source directory>
 
 Just use the `-p` or `--print` flags:
 
-```
+```bash
 python3 tagmyflac.py --print -s <source directory>
 ```
+
+Consider, that the printing evaluation is the last element in the chain, therefore, when combining the `--print` flag with other potentially tag-modifying flags, printing will show the end result.

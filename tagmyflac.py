@@ -1,8 +1,7 @@
-import argparse, string, sys, glob
+import argparse, string, sys, glob, mutagen
 from mutagen.mp3 import MP3, MutagenError
 from mutagen.easyid3 import EasyID3
 from mutagen.id3 import ID3NoHeaderError
-import mutagen
 
 
 r"""       ______                  __   
@@ -76,6 +75,7 @@ def delete_tags(file, audio):
     meta.add_tags()
     meta.save(file["path"], v1=2)
     print_verbose(args.verbose, "Deleted tags from " + file["filename"])
+
 
 """ writes title artist tag """
 def tag_title_artist(file, audio):
