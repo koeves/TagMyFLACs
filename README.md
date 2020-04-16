@@ -11,7 +11,8 @@ ID3 tagger for music files
   2.2 [Scraping tags from files](https://github.com/koeves/TagMyFLACs#ii-scraping-tags-from-files)  
   2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFLACs#iii-printing-all-tags-of-a-file)  
   2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFLACs#iv-adding-custom-tags-from-json)  
-  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFLACs#v-exporting-metadata-in-json)
+  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFLACs#v-exporting-metadata-in-json)  
+  2.6 [Restoring file metadata from exported JSON]()
 
 ## Installation
 
@@ -107,10 +108,18 @@ Example:
 $ python3 tagmyflacs.py -vp "source directory" --tags '{"genre": "minimal"}'
 ```
 
-### V. Exporting metadata in JSON
+### V.1 Exporting metadata in JSON
 
 You can use the `-e` or `--export` flags to produce a JSON file with all your songs metadata (to be used for restores etc.)
 
 ```bash
 $ python3 tagmyflacs.py --export "source directory"
 ``` 
+
+### V.2 Restoring file metadata from exported JSON
+
+Combined with use case [V.1](https://github.com/koeves/TagMyFLACs#v-exporting-metadata-in-json), files can be restored from the previously exported JSON by using the `--restore` flag and providing the path of a `.json` file
+
+```bash
+$ python3 tagmyflacs.py "source directory" --restore "json file"
+```

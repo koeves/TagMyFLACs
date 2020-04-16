@@ -59,7 +59,7 @@ def parse_filename(filename):
 
 
 """ calls the apporiate functions based on flags """
-def argument_check(filename, songs=None):
+def argument_check(filename, songs=None, restore=None):
     file = parse_filename(filename)
     try:
         audio = EasyID3(filename)
@@ -68,12 +68,14 @@ def argument_check(filename, songs=None):
         if (args.retag):
             retag_from_filename(file, audio)
         if (args.tags):
-            write_tags(args.tags, file, audio)
+            write_tags(file, audio, args.tags)
         if (args.print):
             print_tags(file, audio)
         if (args.export):
-            songs[file["filename"]] = get_tags(audio)
+            songs[file["path"]] = get_tags(audio)
             return songs
+        if (args.restore):
+            write_tags(file, audio, tags=restore[file["filename"]])
     except ID3NoHeaderError:
         print("No ID3 tags found for " + file["filename"])
         print("Adding empty tags")
@@ -88,34 +90,41 @@ def argument_check(filename, songs=None):
 def walk_directory(input_dir):
     songs = {}
     is_directory = False
+
+    restore = {}
+    if (args.restore):
+        with open(args.restore) as fp:
+            restore = json.load(fp)
+
     for filename in list_files_recursive(input_dir):
         is_directory = True
-        songs = argument_check(filename, songs)
+        songs = argument_check(filename, songs, restore)
 
     # a file was provided for source, check
     if not is_directory:
-        argument_check(input_dir)
+        argument_check(input_dir, songs)
 
     if (args.export):
         export_tags(songs, input_dir)
 
 """ writes tags provided in JSON format """
-def write_tags(tags, file, audio):
-    if "{" and "}" in tags:
+def write_tags(file, audio, tags):
+    tags_json = {}
+    if not args.restore:
         try:
             tags_json = json.loads(tags)
         except ValueError:
             print("Wrongly formatted JSON!")
             print("Sample format: '{\"genre\": \"minimal\"}'")
             sys.exit(1)
-            
-        for key in tags_json:
-            try:
-                audio[key] = tags_json[key]
-            except EasyID3KeyError:
-                print("Provided key " + key + " is invalid.")
-                print("Run with --print_valid_keys flag to check available keys")
-                sys.exit(1)
+        
+    for key in tags if args.restore else tags_json:
+        try:
+            audio[key] = tags[key] if args.restore else tags_json[key]
+        except EasyID3KeyError:
+            print("Provided key " + key + " is invalid.")
+            print("Run with --print_valid_keys flag to check available keys")
+            sys.exit(1)
 
     print("Added tags to " + file["filename"])
     audio.save()
@@ -165,7 +174,7 @@ def export_tags(songs, input_dir):
     with open(filename, "w") as fp:
         json.dump(songs, fp, indent=4)
     print("Dumped metadata of folder " + input_dir + " in file " + filename)
-
+    
 
 """ main """
 if __name__ == '__main__':
@@ -178,6 +187,7 @@ if __name__ == '__main__':
     parser.add_argument("--print_valid_keys", help="print taggable keys list", action="store_true")
     parser.add_argument("-t", "--tags", type=str, help="write the provided key-value pairs as tags")
     parser.add_argument("-e", "--export", help="export song metadata in JSON", action="store_true")
+    parser.add_argument("--restore", type=str, help="restore file metadata from exported JSON")
 
     print(hello)
 
@@ -195,5 +205,3 @@ if __name__ == '__main__':
         print("Please provide an input directory")
         parser.print_usage()
         sys.exit(1)
-
-    print("Exited")
