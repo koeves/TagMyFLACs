@@ -12,7 +12,7 @@ ID3 tagger for music files
   2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFLACs#iii-printing-all-tags-of-a-file)  
   2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFLACs#iv-adding-custom-tags-from-json)  
   2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFLACs#v-exporting-metadata-in-json)  
-  2.6 [Restoring file metadata from exported JSON]()
+  2.6 [Restoring file metadata from exported JSON](https://github.com/koeves/TagMyFLACs#v2-restoring-file-metadata-from-exported-json)
 
 ## Installation
 
