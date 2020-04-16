@@ -4,7 +4,7 @@ from mutagen.easyid3 import EasyID3, EasyID3KeyError
 from mutagen.id3 import ID3NoHeaderError
 
 hello = r"""
-      ___           ___           ___                    ___           ___     
+      ___           ___           ___                    ___           ___                
      /\  \         /\  \         /\  \                  /\__\         |\__\    
      \:\  \       /::\  \       /::\  \                /::|  |        |:|  |   
       \:\  \     /:/\:\  \     /:/\:\  \              /:|:|  |        |:|  |   
