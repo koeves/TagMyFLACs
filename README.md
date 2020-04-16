@@ -121,5 +121,5 @@ $ python3 tagmyflacs.py --export "source directory"
 Combined with use case [V.1](https://github.com/koeves/TagMyFLACs#v-exporting-metadata-in-json), files can be restored from the previously exported JSON by using the `--restore` flag and providing the path of a `.json` file
 
 ```bash
-$ python3 tagmyflacs.py "source directory" --restore "json file"
+$ python3 tagmyflacs.py "source directory" --restore <json file (without quotes!)>
 ```
