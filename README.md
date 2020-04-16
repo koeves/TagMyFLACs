@@ -5,13 +5,13 @@ ID3 tagger for music files
 
 ## Table of Contents
 
-1. [Installation](https://github.com/koeves/TagMyFlac#installation)
-2. [Basic use-case scenarios](https://github.com/koeves/TagMyFlac#basic-use-case-scenarios)  
-  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFlac#i-basic-metadata-from-filename)  
-  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFlac#ii-scraping-tags-from-files)  
-  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFlac#iii-printing-all-tags-of-a-file)  
-  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFlac#iv-adding-custom-tags-from-json)  
-  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFlac#v-exporting-metadata-in-json)
+1. [Installation](https://github.com/koeves/TagMyFlacs#installation)
+2. [Basic use-case scenarios](https://github.com/koeves/TagMyFlacs#basic-use-case-scenarios)  
+  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFlacs#i-basic-metadata-from-filename)  
+  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFlacs#ii-scraping-tags-from-files)  
+  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFlacs#iii-printing-all-tags-of-a-file)  
+  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFlacs#iv-adding-custom-tags-from-json)  
+  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFlacs#v-exporting-metadata-in-json)
 
 ## Installation
 
@@ -23,19 +23,19 @@ Use `pip3` to install requirements:
 $ sudo -H pip3 install -r requirements.txt
 ```
 
-Run `tagmyflac.py`:
+Run `tagmyflacs.py`:
 
 ```bash
-$ python3 tagmyflac.py --help
+$ python3 tagmyflacs.py --help
 ```
 
 The output should now be the following:
 
 ```bash
-usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
+usage: tagmyflacs.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
                     [--print_valid_keys] [-t TAGS] [-e]
 
-Tag My FLAC
+Tag My FLACS
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -59,10 +59,10 @@ Supppose you have some online rips of songs.
 Name them the following way: 
 `ARTIST NAME - SONG TITLE [CAT_ID/ALBUM NAME -- optional].mp3`
 
-You can then use TagMyFlac to automatically add the given ID3 metadata for the files in the source directory *recursively*:
+You can then use tagmyflacs to automatically add the given ID3 metadata for the files in the source directory *recursively*:
 
 ```bash
-$ python3 tagmyflac.py -vrs <source directory>
+$ python3 tagmyflacs.py -vrs <source directory>
 ```
  
 #### A note on source directory paths
@@ -73,14 +73,14 @@ By default, when you provide a directory's path you would exclude the trailing s
 You can reset the tags from your files by running
 
 ```bash
-$ python3 tagmyflac.py --scrape -vs <source directory>
+$ python3 tagmyflacs.py --scrape -vs <source directory>
 ```
 
 The `--scrape` flag reinitialises the files again, so you can run the `--retag` option easily.  
   
 Scenarios I. and II. can also be combined naturally:
 ```bash
-$ python3 tagmyflac.py --scrape -vrs <source directory>
+$ python3 tagmyflacs.py --scrape -vrs <source directory>
 ```
 
 ### III. Printing all tags of a file
@@ -88,7 +88,7 @@ $ python3 tagmyflac.py --scrape -vrs <source directory>
 Just use the `-p` or `--print` flags:
 
 ```bash
-$ python3 tagmyflac.py --print -s <source directory>
+$ python3 tagmyflacs.py --print -s <source directory>
 ```
 
 Consider, that the printing evaluation is the last element in the chain, therefore, when combining the `--print` flag with other potentially tag-modifying flags, printing will show the end result.
@@ -102,7 +102,7 @@ You can use the `-t` or `--tags` flag and provide a *preformatted* JSON with the
 
 Example: 
 ```bash
-$ python3 tagmyflac.py -vps <source directory> --tags '{"genre": "minimal"}'
+$ python3 tagmyflacs.py -vps <source directory> --tags '{"genre": "minimal"}'
 ```
 
 ### V. Exporting metadata in JSON
@@ -110,5 +110,5 @@ $ python3 tagmyflac.py -vps <source directory> --tags '{"genre": "minimal"}'
 You can use the `-e` or `--export` flags to produce a JSON file with all your songs metadata (to be used for restores etc.)
 
 ```bash
-$ python3 tagmyflac.py --export -s <source directory>
+$ python3 tagmyflacs.py --export -s <source directory>
 ``` 

@@ -169,7 +169,7 @@ def export_tags(songs, input_dir):
 
 """ main """
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Tag My FLAC')
+    parser = argparse.ArgumentParser(description='TagMyFLACs')
     parser.add_argument("-s", "--source", type=str, help="source path of directory of your files")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
     parser.add_argument("-r", "--retag", help="tags title and artist", action="store_true")
