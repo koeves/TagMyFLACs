@@ -44,33 +44,43 @@ def parse_filename(filename):
     }
 
 
+""" calls the apporiate functions based on flags """
+def argument_check(filename, songs=None):
+    file = parse_filename(filename)
+    try:
+        audio = EasyID3(filename)
+        if (args.scrape):
+            delete_tags(file, audio)
+        if (args.retag):
+            retag_from_filename(file, audio)
+        if (args.tags):
+            write_tags(args.tags, file, audio)
+        if (args.print):
+            print_tags(file, audio)
+        if (args.export):
+            songs[file["filename"]] = get_tags(audio)
+            return songs
+    except ID3NoHeaderError:
+        print("No ID3 tags found for " + file["filename"])
+        print("Adding empty tags")
+        meta = mutagen.File(file["path"], easy=True)
+        meta.add_tags()
+        meta.save(file["path"], v1=2)
+    except MutagenError:
+        print("Loading " + filename + " failed :(")
+
+
 """ handles eye d three """
 def walk_directory(input_dir):
     songs = {}
+    is_directory = False
     for filename in list_files_recursive(input_dir):
-        file = parse_filename(filename)
-        try:
-            audio = EasyID3(filename)
+        is_directory = True
+        songs = argument_check(filename, songs)
 
-            if (args.scrape):
-                delete_tags(file, audio)
-            if (args.retag):
-                retag_from_filename(file, audio)
-            if (args.tags):
-                write_tags(args.tags, file, audio)
-            if (args.print):
-                print_tags(file, audio)
-            if (args.export):
-                songs[file["filename"]] = get_tags(audio)
-
-        except ID3NoHeaderError:
-            print("No ID3 tags found for " + file["filename"])
-            print("Adding empty tags")
-            meta = mutagen.File(file["path"], easy=True)
-            meta.add_tags()
-            meta.save(file["path"], v1=2)
-        except MutagenError:
-            print("Loading " + filename + " failed :(")
+    # a file was provided for source, check
+    if not is_directory:
+        argument_check(input_dir)
 
     if (args.export):
         export_tags(songs, input_dir)
@@ -100,7 +110,7 @@ def write_tags(tags, file, audio):
 """ delete tags from file """
 def delete_tags(file, audio):
     audio.delete()
-    """ adding empty tags back in """
+    # adding empty tags back in
     meta = mutagen.File(file["path"], easy=True)
     meta.add_tags()
     meta.save(file["path"], v1=2)
