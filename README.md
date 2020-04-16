@@ -1,17 +1,17 @@
-# TagMyFlacs
+# TagMyFLACs
 ID3 tagger for music files
 
 <img align="center" src="logo.png" />
 
 ## Table of Contents
 
-1. [Installation](https://github.com/koeves/TagMyFlacs#installation)
-2. [Basic use-case scenarios](https://github.com/koeves/TagMyFlacs#basic-use-case-scenarios)  
-  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFlacs#i-basic-metadata-from-filename)  
-  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFlacs#ii-scraping-tags-from-files)  
-  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFlacs#iii-printing-all-tags-of-a-file)  
-  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFlacs#iv-adding-custom-tags-from-json)  
-  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFlacs#v-exporting-metadata-in-json)
+1. [Installation](https://github.com/koeves/TagMyFLACs#installation)
+2. [Basic use-case scenarios](https://github.com/koeves/TagMyFLACs#basic-use-case-scenarios)  
+  2.1 [Basic metadata from filename](https://github.com/koeves/TagMyFLACs#i-basic-metadata-from-filename)  
+  2.2 [Scraping tags from files](https://github.com/koeves/TagMyFLACs#ii-scraping-tags-from-files)  
+  2.3 [Printing all tags of a file](https://github.com/koeves/TagMyFLACs#iii-printing-all-tags-of-a-file)  
+  2.4 [Adding custom tags from JSON](https://github.com/koeves/TagMyFLACs#iv-adding-custom-tags-from-json)  
+  2.5 [Exporting metadata in JSON](https://github.com/koeves/TagMyFLACss#v-exporting-metadata-in-json)
 
 ## Installation
 
