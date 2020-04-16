@@ -32,18 +32,8 @@ $ python3 tagmyflac.py --help
 The output should now be the following:
 
 ```bash
-
-          ______                  __   
-_________/     \\     _____      / /   _______    ____    ___
-|__   __|  ____  |   //  \_\     /_/   |  ___|  //   \\_//  \\
-   | |  |  |__|  |  ||  _____          |  |_   | |     V    | |
-   | |  |        |  ||     ||          |   _|  | |     |    | |
-   | |  |   __   |   \\___//           |  |____| |          | |
-   |_|  |__|  |__|                     |_______|_|          |_|
-
-
 usage: tagmyflac.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
-                    [--print_valid_keys] [-t TAGS]
+                    [--print_valid_keys] [-t TAGS] [-e]
 
 Tag My FLAC
 
@@ -57,6 +47,7 @@ optional arguments:
   --scrape              scrape ID3 tags from files
   --print_valid_keys    print taggable keys list
   -t TAGS, --tags TAGS  write the provided key-value pairs as tags
+  -e, --export          export song metadata in JSON
 ```
 
 You can always access this help page via the `-h` or `--help` flags.
