@@ -1,4 +1,4 @@
-# TagMyFlac
+# TagMyFlacs
 ID3 tagger for music files
 
 <img align="center" src="logo.png" />
