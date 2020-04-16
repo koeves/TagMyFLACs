@@ -32,15 +32,17 @@ $ python3 tagmyflacs.py --help
 The output should now be the following:
 
 ```bash
-usage: tagmyflacs.py [-h] [-s SOURCE] [-v] [-r] [-p] [--scrape]
-                    [--print_valid_keys] [-t TAGS] [-e]
+usage: tagmyflacs.py [-h] [-v] [-r] [-p] [--scrape] [--print_valid_keys]
+                     [-t TAGS] [-e]
+                     source
 
-Tag My FLACS
+TagMyFLACs
+
+positional arguments:
+  source                source path of directory of your files
 
 optional arguments:
   -h, --help            show this help message and exit
-  -s SOURCE, --source SOURCE
-                        source path of directory of your files
   -v, --verbose         increase output verbosity
   -r, --retag           tags title and artist
   -p, --print           print metadata tags
@@ -62,7 +64,7 @@ Name them the following way:
 You can then use tagmyflacs to automatically add the given ID3 metadata for the files in the source directory *recursively*:
 
 ```bash
-$ python3 tagmyflacs.py -vrs <source directory>
+$ python3 tagmyflacs.py -vr "source directory"
 ```
  
 #### A note on source directory paths
@@ -73,14 +75,14 @@ By default, when you provide a directory's path you would exclude the trailing s
 You can reset the tags from your files by running
 
 ```bash
-$ python3 tagmyflacs.py --scrape -vs <source directory>
+$ python3 tagmyflacs.py --scrape -v "source directory"
 ```
 
 The `--scrape` flag reinitialises the files again, so you can run the `--retag` option easily.  
   
 Scenarios I. and II. can also be combined naturally:
 ```bash
-$ python3 tagmyflacs.py --scrape -vrs <source directory>
+$ python3 tagmyflacs.py --scrape -vr "source directory"
 ```
 
 ### III. Printing all tags of a file
@@ -88,7 +90,7 @@ $ python3 tagmyflacs.py --scrape -vrs <source directory>
 Just use the `-p` or `--print` flags:
 
 ```bash
-$ python3 tagmyflacs.py --print -s <source directory>
+$ python3 tagmyflacs.py --print "source directory"
 ```
 
 Consider, that the printing evaluation is the last element in the chain, therefore, when combining the `--print` flag with other potentially tag-modifying flags, printing will show the end result.
@@ -102,7 +104,7 @@ You can use the `-t` or `--tags` flag and provide a *preformatted* JSON with the
 
 Example: 
 ```bash
-$ python3 tagmyflacs.py -vps <source directory> --tags '{"genre": "minimal"}'
+$ python3 tagmyflacs.py -vp "source directory" --tags '{"genre": "minimal"}'
 ```
 
 ### V. Exporting metadata in JSON
@@ -110,5 +112,5 @@ $ python3 tagmyflacs.py -vps <source directory> --tags '{"genre": "minimal"}'
 You can use the `-e` or `--export` flags to produce a JSON file with all your songs metadata (to be used for restores etc.)
 
 ```bash
-$ python3 tagmyflacs.py --export -s <source directory>
+$ python3 tagmyflacs.py --export "source directory"
 ``` 
